@@ -418,7 +418,7 @@ body {
   <div class="two-col" style="position:relative;z-index:2;">
 
     <!-- LEFT COLUMN -->
-    <div>
+    <div style="display:flex;flex-direction:column;">
 
       <div class="fade-up">
         <div class="section-header"><span class="section-icon">🎓</span><h2 class="section-title">Education</h2></div>
@@ -592,6 +592,13 @@ body {
           <div class="achievement-item">
             <div class="ach-icon" style="background:#dbeafe;">⚡</div>
             <div>
+              <div class="ach-title">Intro to Front-End Development</div>
+              <div class="ach-desc">Successfully completed Meta's "Introduction to Front-End Development" course on Coursera, learning the fundamentals of HTML, CSS, JavaScript, responsive design, and modern front-end web development.</div>
+            </div>
+          </div>
+           <div class="achievement-item">
+            <div class="ach-icon" style="background:#dbeafe;">⚡</div>
+            <div>
               <div class="ach-title">Frontend Web Development Internship</div>
               <div class="ach-desc">Completed a three-month Frontend Web Development internship at Codtech IT Solutions, gaining practical skills, project experience, and teamwork abilities professionally.</div>
             </div>
@@ -606,59 +613,79 @@ body {
         </div>
       </div>
 
-      <div class="fade-up">
-        <div class="section-header"><span class="section-icon">📜</span><h2 class="section-title">Certificates</h2></div>
-        <div class="card">
-          <div class="card-title">Credentials & Certifications</div>
-          <div class="cert-grid" id="certGrid">
-
-            <!-- ✏️ CERT 1 — real certificate -->
-            <div class="cert-card" onclick="openLightbox(0)">
-              <div style="overflow:hidden;border-radius:14px 14px 0 0;">
-                <img class="cert-thumb" src="./intership.jpg" alt="Internship Certificate"
-                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                <div class="cert-thumb-placeholder" style="display:none;">
-                  <span class="cert-placeholder-icon">📜</span>
-                  <span class="cert-placeholder-text">intership.jpg</span>
-                </div>
-              </div>
-              <div class="cert-overlay">
-                <div class="cert-overlay-icon">👁️</div>
-                <div class="cert-overlay-text">Click to view</div>
-              </div>
-              <div class="cert-info">
-                <div class="cert-name">Internship Certificate</div>
-                <div class="cert-issuer">CodeTech IT Solutions • 2026</div>
-              </div>
-            </div>
-
-            <div class="cert-card" onclick="openLightbox(1)">
-              <div style="overflow:hidden;border-radius:14px 14px 0 0;">
-                <img class="cert-thumb" src="./asss.jpg" alt="AWS Certificate"
-                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                <div class="cert-thumb-placeholder" style="display:none;">
-                  <span class="cert-placeholder-icon">📜</span>
-                  <span class="cert-placeholder-text">asss.jpg</span>
-                </div>
-              </div>
-              <div class="cert-overlay">
-                <div class="cert-overlay-icon">👁️</div>
-                <div class="cert-overlay-text">Click to view</div>
-              </div>
-              <div class="cert-info">
-                <div class="cert-name">AWS Certificate</div>
-                <div class="cert-issuer">AWS Training & Certification • 2026</div>
-              </div>
-            </div>
-
-            <!-- ✏️ Aur certificates add karne ke liye yahan copy-paste karo -->
-
-          </div>
-        </div>
-      </div>
-
     </div><!-- /right col -->
   </div><!-- /two-col -->
+
+  <!-- ── CERTIFICATES (full width — covers the same left-to-right area as the Hire Me banner) ── -->
+  <div class="fade-up" style="position:relative;z-index:2;max-width:1100px;margin:24px auto 0;">
+    <div class="section-header"><span class="section-icon">📜</span><h2 class="section-title">Certificates</h2></div>
+    <div class="card">
+      <div class="card-title">Credentials & Certifications</div>
+      <div class="cert-grid" id="certGrid">
+
+        <!-- ✏️ CERT 1 — real certificate -->
+        <div class="cert-card" onclick="openLightbox(0)">
+          <div style="overflow:hidden;border-radius:14px 14px 0 0;">
+            <img class="cert-thumb" src="./intership.jpg" alt="Internship Certificate"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="cert-thumb-placeholder" style="display:none;">
+              <span class="cert-placeholder-icon">📜</span>
+              <span class="cert-placeholder-text">intership.jpg</span>
+            </div>
+          </div>
+          <div class="cert-overlay">
+            <div class="cert-overlay-icon">👁️</div>
+            <div class="cert-overlay-text">Click to view</div>
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Internship Certificate</div>
+            <div class="cert-issuer">CodeTech IT Solutions • 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox(1)">
+          <div style="overflow:hidden;border-radius:14px 14px 0 0;">
+            <img class="cert-thumb" src="./asss.jpg" alt="AWS Certificate"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="cert-thumb-placeholder" style="display:none;">
+              <span class="cert-placeholder-icon">📜</span>
+              <span class="cert-placeholder-text">asss.jpg</span>
+            </div>
+          </div>
+          <div class="cert-overlay">
+            <div class="cert-overlay-icon">👁️</div>
+            <div class="cert-overlay-text">Click to view</div>
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">AWS Certificate</div>
+            <div class="cert-issuer">AWS Training & Certification • 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox(2)">
+          <div style="overflow:hidden;border-radius:14px 14px 0 0;">
+            <img class="cert-thumb" src="./coursera.jpg" alt="Introduction to Front-End Development Certificate"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="cert-thumb-placeholder" style="display:none;">
+              <span class="cert-placeholder-icon">📜</span>
+              <span class="cert-placeholder-text">coursera.jpg</span>
+            </div>
+          </div>
+          <div class="cert-overlay">
+            <div class="cert-overlay-icon">👁️</div>
+            <div class="cert-overlay-text">Click to view</div>
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Intro to Front-End Development</div>
+            <div class="cert-issuer">Meta • Coursera • 2026</div>
+          </div>
+        </div>
+
+        <!-- ✏️ Aur certificates add karne ke liye yahan copy-paste karo -->
+
+      </div>
+    </div>
+  </div>
 
   <!-- ── CTA BANNER ── -->
   <div style="position:relative;z-index:2;">
@@ -674,6 +701,8 @@ body {
   </div>
 
 </section>
+
+
 
 <!-- ========== FOOTER ========== -->
 <footer class="footer">
@@ -715,7 +744,8 @@ body {
 // ✏️ Apne certificates yahan add karo
 const certs = [
   { src: './intership.jpg', name: 'Internship Certificate', issuer: 'CodeTech IT Solutions • 2026' },
-  { src: './asss.jpg',      name: 'AWS Certificate',        issuer: 'AWS Training & Certification • 2026' }
+  { src: './asss.jpg',      name: 'AWS Certificate',        issuer: 'AWS Training & Certification • 2026' },
+  { src: './coursera.jpg',  name: 'Intro to Front-End Development', issuer: 'Meta • Coursera • 2026' }
 ];
 
 let currentCert = 0;
