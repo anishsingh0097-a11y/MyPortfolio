@@ -398,19 +398,134 @@ a, button, .cert-card, .project-card, .tech-item, .skill-pill, .stat-item, .cont
 }
 @keyframes blinkCursor { 0%,100%{opacity:1;} 50%{opacity:0;} }
 
-/* RESPONSIVE */
+/* ═══════════════════════════════════
+   RESPONSIVE — TABLET (max 900px)
+═══════════════════════════════════ */
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; gap: 40px; }
-  .two-col { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .polaroid-wrapper { margin: 0 auto; max-width: 260px; }
+  .hero-right { padding-top: 0; }
+  .greeting-line { justify-content: center; }
+  .name-block { text-align: center; }
+  .role-tag { margin: 12px auto 16px; }
+  .intro-text { margin: 0 auto 24px; }
+  .contact-links { justify-content: center; }
+  .quick-stats { justify-content: center; }
+
+  .two-col { grid-template-columns: 1fr; gap: 0; }
   .lightbox-prev { left: 8px; }
   .lightbox-next { right: 8px; }
+
+  .tech-grid { grid-template-columns: repeat(3, 1fr); }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .cta-banner { padding: 40px 36px; align-items: center; text-align: center; }
+  .cta-text-sub { margin: 0 auto; }
+
+  /* hide heavy doodles on tablet */
+  .doodle.star-1, .doodle.star-2, .doodle.star-3 { display: none; }
 }
+
+/* ═══════════════════════════════════
+   RESPONSIVE — MOBILE (max 600px)
+═══════════════════════════════════ */
 @media (max-width: 600px) {
-  .top-section, .bottom-section { padding: 40px 20px 60px; }
-  .greeting-text { font-size: 56px; }
+  .top-section, .bottom-section { padding: 32px 16px 48px; }
+
+  /* Welcome popup */
+  #typewriter-text { font-size: 22px; padding: 0 20px; text-align: center; }
+
+  /* Hero */
+  .greeting-text { font-size: 48px; }
+  .greeting-wave { font-size: 40px; }
+  .name-text { font-size: 22px; }
+  .polaroid-wrapper { max-width: 220px; }
+  .badge-1 { width: 60px; height: 60px; font-size: 9px; right: -12px; bottom: -12px; }
+  .badge-2 { width: 50px; height: 50px; font-size: 9px; left: -12px; }
+
+  /* Stats */
+  .quick-stats { gap: 10px; }
+  .stat-item { padding: 12px 14px; }
+  .stat-num { font-size: 22px; }
+
+  /* Contact chips */
+  .contact-links { gap: 8px; }
+  .contact-chip { font-size: 11px; padding: 7px 12px; }
+  .chip-icon { font-size: 13px; }
+
+  /* Section headers */
+  .section-title { font-size: 20px; }
+  .section-icon { font-size: 20px; }
+
+  /* Cards */
+  .card { padding: 20px 16px; }
+
+  /* Skills */
+  .skill-pill { font-size: 11px; padding: 5px 10px; }
+
+  /* Tech grid */
+  .tech-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .tech-item { padding: 10px 6px; }
+  .tech-icon { font-size: 22px; }
+  .tech-name { font-size: 10px; }
+
+  /* Timeline */
+  .timeline-role { font-size: 15px; }
+  .timeline-points li { font-size: 12px; }
+
+  /* Projects */
+  .project-name { font-size: 14px; }
+  .project-desc { font-size: 12px; }
+
+  /* Certs */
   .cert-grid { grid-template-columns: 1fr; }
-  .cta-banner { padding: 32px 28px; }
-  .cta-text-head { font-size: 26px; }
+  .cert-grid > .cert-card:last-child:nth-child(odd) { max-width: 100%; margin: 0; }
+
+  /* CTA */
+  .cta-banner { padding: 28px 20px; border-radius: 18px; }
+  .cta-text-head { font-size: 22px; }
+  .cta-text-sub { font-size: 13px; }
+  .cta-btn { font-size: 14px; padding: 12px 24px; }
+
+  /* Lightbox */
+  .lightbox-prev { left: 6px; }
+  .lightbox-next { right: 6px; }
+  .lightbox-footer { padding: 12px 16px; }
+  .lightbox-title { font-size: 14px; }
+
+  /* Footer */
+  .footer { padding: 28px 20px; }
+  .footer-text { font-size: 18px; }
+
+  /* Astro scene smaller */
+  .astro-scene { min-height: 300px; }
+  .astro-float-1 { width: 140px; }
+  .astro-float-2 { width: 88px; }
+  .astro-float-3 { width: 76px; }
+
+  /* Edu blocks */
+  .edu-icon-wrap { width: 38px; height: 38px; font-size: 16px; }
+  .edu-degree { font-size: 14px; }
+
+  /* Achievement */
+  .ach-title { font-size: 13px; }
+  .ach-desc { font-size: 11px; }
+  .ach-icon { width: 36px; height: 36px; font-size: 16px; }
+
+  /* Soft skill bars */
+  .soft-skill-label { font-size: 11px; }
+}
+
+/* ═══════════════════════════════════
+   RESPONSIVE — SMALL (max 380px)
+═══════════════════════════════════ */
+@media (max-width: 380px) {
+  .greeting-text { font-size: 38px; }
+  .name-text { font-size: 18px; }
+  .tech-grid { grid-template-columns: repeat(2, 1fr); }
+  .quick-stats { gap: 8px; }
+  .stat-item { padding: 10px 10px; }
+  .contact-chip span:not(.chip-icon) { display: none; }
 }
 </style>
 </head>
