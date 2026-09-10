@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anish Kumar Singh — Frontend Developer</title>
+<link rel="icon" type="image/jpeg" href="./ani.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Caveat:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -95,7 +96,8 @@ body {
 .intro-text { font-size: 15.5px; line-height: 1.75; color: #475569; max-width: 480px; margin-bottom: 28px; }
 
 .contact-links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
-.contact-chip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; text-decoration: none; transition: all 0.25s ease; border: 2px solid transparent; cursor: pointer; }
+.contact-chip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; text-decoration: none; transition: all 0.25s ease, opacity 0.5s ease, transform 0.5s ease; border: 2px solid transparent; cursor: pointer; opacity: 0; transform: translateY(20px); }
+.contact-chip.in { opacity: 1; transform: translateY(0); }
 .chip-email   { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
 .chip-phone   { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
 .chip-github  { background: #faf5ff; color: #7e22ce; border-color: #e9d5ff; }
@@ -104,8 +106,9 @@ body {
 .chip-icon { font-size: 16px; }
 
 .quick-stats { display: flex; gap: 20px; flex-wrap: wrap; }
-.stat-item { text-align: center; background: white; border-radius: 16px; padding: 16px 22px; box-shadow: 0 4px 16px rgba(0,0,0,0.07); transition: transform 0.2s ease; border: 2px solid transparent; }
-.stat-item:hover { transform: translateY(-4px); border-color: var(--blue); }
+.stat-item { text-align: center; background: white; border-radius: 16px; padding: 16px 22px; box-shadow: 0 4px 16px rgba(0,0,0,0.07); transition: transform 0.2s ease, opacity 0.5s ease; border: 2px solid transparent; opacity: 0; transform: translateY(30px); }
+.stat-item.in { opacity: 1; transform: translateY(0); }
+.stat-item:hover { transform: translateY(-4px) !important; border-color: var(--blue); }
 .stat-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 900; color: var(--black); line-height: 1; }
 .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-top: 4px; }
 
@@ -117,9 +120,34 @@ body {
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; max-width: 1100px; margin: 0 auto; }
 
-/* CARD */
-.card { background: rgba(255,255,255,0.82); border: 1px solid rgba(120,100,80,0.13); border-radius: 20px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04); transition: all 0.3s ease; backdrop-filter: blur(4px); }
+/* ── UNIQUE SCROLL TRANSITIONS PER CARD ── */
+
+/* Base — hidden by default only in bottom-section */
+.card {
+  background: rgba(255,255,255,0.82); border: 1px solid rgba(120,100,80,0.13);
+  border-radius: 20px; padding: 28px; margin-bottom: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  transition: all 0.3s ease; backdrop-filter: blur(4px);
+}
 .card:hover { background: rgba(255,255,255,0.96); border-color: rgba(120,100,80,0.22); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+.bottom-section .card { opacity: 0; }
+
+/* Transition styles — assigned by JS */
+.card.anim-slide-left    { transform: translateX(-80px) rotate(-2deg); transition: opacity 0.7s ease, transform 0.7s ease; }
+.card.anim-slide-right   { transform: translateX(80px) rotate(2deg);   transition: opacity 0.7s ease, transform 0.7s ease; }
+.card.anim-slide-up      { transform: translateY(70px);                 transition: opacity 0.7s ease, transform 0.7s ease; }
+.card.anim-zoom-in       { transform: scale(0.75);                      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1); }
+.card.anim-flip-x        { transform: rotateX(40deg) translateY(40px);  transform-origin: top center; transition: opacity 0.7s ease, transform 0.7s ease; }
+.card.anim-skew          { transform: skewX(-8deg) translateX(-60px);   transition: opacity 0.7s ease, transform 0.7s ease; }
+.card.anim-drop          { transform: translateY(-60px) scale(0.9);     transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.4,0.64,1); }
+.card.anim-spin-in       { transform: rotate(-6deg) scale(0.85);        transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.4,0.64,1); }
+
+/* Visible state — all reset to normal */
+.card.card-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+.card.card-visible:hover { transform: translateY(-3px) !important; }
 .card-title { font-family: 'Space Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 2px; color: var(--orange); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
 .card-title::before { content: ''; display: block; width: 20px; height: 2px; background: var(--orange); }
 
@@ -156,6 +184,24 @@ body {
 .soft-skill-track { height: 7px; background: rgba(120,100,80,0.12); border-radius: 10px; overflow: hidden; }
 .soft-skill-fill { height: 100%; border-radius: 10px; transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 
+/* FLOATING ASTRONAUT DOODLE — blends into background, no card box */
+.astro-scene { position: relative; min-height: 460px; }
+.astro-glow { position: absolute; top: 100px; left: 50%; transform: translate(-50%,-50%); width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(168,85,247,0.12), transparent 70%); pointer-events: none; }
+.astro-orbit { position: absolute; top: 100px; left: 50%; transform: translate(-50%,-50%); width: 240px; height: 78px; border: 1.5px dashed rgba(120,100,80,0.25); border-radius: 50%; }
+.astro-svg { width: 100%; height: auto; display: block; }
+.astro-float { position: absolute; }
+.astro-float-1 { top: 0; left: 50%; width: 195px; transform: translateX(-50%); animation: astroDrift1 6s ease-in-out infinite; z-index: 2; }
+.astro-float-2 { bottom: 10px; left: 6px; width: 118px; animation: astroDrift2 7s ease-in-out infinite; }
+.astro-float-3 { bottom: 36px; right: 6px; width: 102px; animation: astroDrift3 5.5s ease-in-out infinite; }
+@keyframes astroDrift1 { 0%,100% { transform: translateX(-50%) translateY(0) rotate(-3deg); } 50% { transform: translateX(-50%) translateY(-20px) rotate(3deg); } }
+@keyframes astroDrift2 { 0%,100% { transform: translate(0,0) rotate(4deg); } 50% { transform: translate(10px,-16px) rotate(-4deg); } }
+@keyframes astroDrift3 { 0%,100% { transform: translate(0,0) rotate(-5deg); } 50% { transform: translate(-10px,-14px) rotate(5deg); } }
+.astro-star { position: absolute; font-family: 'DM Sans', sans-serif; animation: spin 7s linear infinite; }
+.astro-star-1 { top: 10px; left: 26px; font-size: 17px; color: var(--yellow); animation-duration: 6s; }
+.astro-star-2 { top: 190px; right: 24px; font-size: 13px; color: var(--pink); animation-duration: 9s; animation-direction: reverse; }
+.astro-star-3 { top: 70px; right: 60px; font-size: 14px; color: var(--blue); animation-duration: 5s; }
+.astro-star-4 { bottom: 6px; left: 90px; font-size: 12px; color: var(--purple); animation-duration: 8s; animation-direction: reverse; }
+
 /* TIMELINE */
 .timeline { position: relative; padding-left: 28px; }
 .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--blue), var(--purple), var(--pink)); border-radius: 2px; }
@@ -187,6 +233,7 @@ body {
 
 /* CERTIFICATE SECTION */
 .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.cert-grid > .cert-card:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; }
 
 .cert-card { position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1.5px solid rgba(120,100,80,0.13); background: white; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 .cert-card:hover { transform: translateY(-4px); border-color: var(--yellow); box-shadow: 0 10px 32px rgba(245,158,11,0.18); }
@@ -303,6 +350,54 @@ body {
 .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+/* ── CUSTOM CURSOR — Batman Among Us ── */
+* { cursor: url('data:image/png;base64,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') 8 4, auto !important; }
+a, button, .cert-card, .project-card, .tech-item, .skill-pill, .stat-item, .contact-chip {
+  cursor: url('data:image/png;base64,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') 8 4, pointer !important;
+}
+#cursor-dot { display: none; }
+#cursor-ring { display: none; }
+
+/* ── SCROLL REVEAL CLASSES ── */
+.reveal-left  { opacity: 0; transform: translateX(-70px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal-right { opacity: 0; transform: translateX(70px);  transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal-up    { opacity: 0; transform: translateY(60px);  transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal-zoom  { opacity: 0; transform: scale(0.85);        transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal-left.in, .reveal-right.in, .reveal-up.in, .reveal-zoom.in { opacity: 1; transform: none; }
+
+/* ── WELCOME POPUP ── */
+#welcome-overlay {
+  position: fixed; inset: 0; z-index: 999999;
+  display: flex; align-items: center; justify-content: center;
+  background: #0d0d0d;
+  transition: opacity 0.8s ease;
+}
+#welcome-overlay.hide { opacity: 0; pointer-events: none; }
+#typewriter-text {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(22px, 4vw, 42px);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-align: center;
+  white-space: nowrap;
+}
+#typewriter-text .gradient-word {
+  background: linear-gradient(90deg, var(--yellow), var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#tw-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background: var(--yellow);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blinkCursor 0.7s step-end infinite;
+}
+@keyframes blinkCursor { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 40px; }
@@ -320,6 +415,15 @@ body {
 </style>
 </head>
 <body>
+
+<!-- ── CUSTOM CURSOR ── -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ── WELCOME POPUP ── -->
+<div id="welcome-overlay">
+  <div id="typewriter-text"><span id="tw-typed"></span><span id="tw-cursor"></span></div>
+</div>
 
 <!-- ========== TOP SECTION ========== -->
 <section class="top-section">
@@ -343,7 +447,7 @@ body {
   </svg>
 
   <div class="hero">
-    <div class="polaroid-wrapper">
+    <div class="polaroid-wrapper reveal-left">
       <div class="tape-top"></div>
       <div class="tape-side"></div>
       <div class="badge badge-1">Open<br>to<br>Work✦</div>
@@ -360,7 +464,7 @@ body {
       <div style="position:absolute;top:-10px;right:-30px;width:100px;height:100px;border:3px dashed rgba(168,85,247,0.25);border-radius:50%;z-index:1;pointer-events:none;animation:spin 20s linear infinite;"></div>
     </div>
 
-    <div class="hero-right">
+    <div class="hero-right reveal-right">
       <div class="greeting-line">
         <span class="greeting-wave">👋</span>
         <span class="greeting-text">Hello!</span>
@@ -420,7 +524,7 @@ body {
     <!-- LEFT COLUMN -->
     <div style="display:flex;flex-direction:column;">
 
-      <div class="fade-up">
+      <div class="fade-up reveal-left">
         <div class="section-header"><span class="section-icon">🎓</span><h2 class="section-title">Education</h2></div>
         <div class="card">
           <div class="card-title">Academic Background</div>
@@ -453,7 +557,7 @@ body {
         </div>
       </div>
 
-      <div class="fade-up">
+      <div class="fade-up reveal-left">
         <div class="section-header"><span class="section-icon">⚡</span><h2 class="section-title">Skills</h2></div>
         <div class="card">
           <div class="card-title">Core Competencies</div>
@@ -475,7 +579,7 @@ body {
         </div>
       </div>
 
-      <div class="fade-up">
+      <div class="fade-up reveal-zoom">
         <div class="section-header"><span class="section-icon">🛠️</span><h2 class="section-title">Tech Stack</h2></div>
         <div class="card">
           <div class="card-title">Technologies I Work With</div>
@@ -491,7 +595,7 @@ body {
         </div>
       </div>
 
-      <div class="fade-up">
+      <div class="fade-up reveal-left">
         <div class="section-header"><span class="section-icon">🌟</span><h2 class="section-title">Soft Skills</h2></div>
         <div class="card">
           <div class="card-title">Personal Strengths</div>
@@ -518,12 +622,92 @@ body {
         </div>
       </div>
 
+      <div class="fade-up">
+        <div class="astro-scene">
+          <div class="astro-glow"></div>
+          <div class="astro-orbit"></div>
+          <span class="astro-star astro-star-1">✦</span>
+          <span class="astro-star astro-star-2">★</span>
+          <span class="astro-star astro-star-3">✧</span>
+          <span class="astro-star astro-star-4">✦</span>
+
+          <div class="astro-float astro-float-1">
+            <svg class="astro-svg" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
+              <rect x="52" y="98" width="56" height="55" rx="14" fill="#cbd5e1"/>
+              <rect x="56" y="150" width="20" height="32" rx="10" fill="#e2e8f0"/>
+              <rect x="84" y="150" width="20" height="32" rx="10" fill="#e2e8f0"/>
+              <rect x="51" y="174" width="27" height="13" rx="6.5" fill="#3b82f6"/>
+              <rect x="82" y="174" width="27" height="13" rx="6.5" fill="#3b82f6"/>
+              <rect x="42" y="85" width="76" height="78" rx="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+              <circle cx="80" cy="118" r="15" fill="#fde047"/>
+              <path d="M73 118 L78 123 L89 110" stroke="#ea580c" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="19" y="98" width="25" height="19" rx="9.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" transform="rotate(-20 31 107)"/>
+              <rect x="116" y="98" width="25" height="19" rx="9.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" transform="rotate(20 128 107)"/>
+              <circle cx="21" cy="113" r="9" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1.5"/>
+              <circle cx="139" cy="113" r="9" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1.5"/>
+              <circle cx="80" cy="54" r="39" fill="#ffffff" stroke="#e2e8f0" stroke-width="2.5"/>
+              <ellipse cx="80" cy="55" rx="29" ry="27" fill="#bfdbfe"/>
+              <circle cx="70" cy="52" r="4" fill="#1e293b"/>
+              <circle cx="92" cy="52" r="4" fill="#1e293b"/>
+              <path d="M70 63 Q80 69 90 63" stroke="#1e293b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <ellipse cx="64" cy="40" rx="8" ry="5" fill="#ffffff" opacity="0.7"/>
+            </svg>
+          </div>
+
+          <div class="astro-float astro-float-2">
+            <svg class="astro-svg" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
+              <rect x="52" y="98" width="56" height="55" rx="14" fill="#cbd5e1"/>
+              <rect x="56" y="150" width="20" height="32" rx="10" fill="#e2e8f0"/>
+              <rect x="84" y="150" width="20" height="32" rx="10" fill="#e2e8f0"/>
+              <rect x="51" y="174" width="27" height="13" rx="6.5" fill="#ec4899"/>
+              <rect x="82" y="174" width="27" height="13" rx="6.5" fill="#ec4899"/>
+              <rect x="42" y="85" width="76" height="78" rx="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+              <circle cx="80" cy="118" r="15" fill="#fde047"/>
+              <path d="M73 118 L78 123 L89 110" stroke="#ea580c" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="19" y="98" width="25" height="19" rx="9.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" transform="rotate(-20 31 107)"/>
+              <rect x="116" y="98" width="25" height="19" rx="9.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" transform="rotate(20 128 107)"/>
+              <circle cx="21" cy="113" r="9" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1.5"/>
+              <circle cx="139" cy="113" r="9" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1.5"/>
+              <circle cx="80" cy="54" r="39" fill="#ffffff" stroke="#e2e8f0" stroke-width="2.5"/>
+              <ellipse cx="80" cy="55" rx="29" ry="27" fill="#fbcfe8"/>
+              <circle cx="70" cy="52" r="4" fill="#1e293b"/>
+              <circle cx="92" cy="52" r="4" fill="#1e293b"/>
+              <path d="M70 63 Q80 69 90 63" stroke="#1e293b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <ellipse cx="64" cy="40" rx="8" ry="5" fill="#ffffff" opacity="0.7"/>
+            </svg>
+          </div>
+
+          <div class="astro-float astro-float-3">
+            <svg class="astro-svg" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg">
+              <rect x="52" y="98" width="56" height="55" rx="14" fill="#cbd5e1"/>
+              <rect x="56" y="150" width="20" height="32" rx="10" fill="#e2e8f0"/>
+              <rect x="84" y="150" width="20" height="32" rx="10" fill="#e2e8f0"/>
+              <rect x="51" y="174" width="27" height="13" rx="6.5" fill="#a855f7"/>
+              <rect x="82" y="174" width="27" height="13" rx="6.5" fill="#a855f7"/>
+              <rect x="42" y="85" width="76" height="78" rx="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+              <circle cx="80" cy="118" r="15" fill="#fde047"/>
+              <path d="M73 118 L78 123 L89 110" stroke="#ea580c" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="19" y="98" width="25" height="19" rx="9.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" transform="rotate(-20 31 107)"/>
+              <rect x="116" y="98" width="25" height="19" rx="9.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" transform="rotate(20 128 107)"/>
+              <circle cx="21" cy="113" r="9" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1.5"/>
+              <circle cx="139" cy="113" r="9" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1.5"/>
+              <circle cx="80" cy="54" r="39" fill="#ffffff" stroke="#e2e8f0" stroke-width="2.5"/>
+              <ellipse cx="80" cy="55" rx="29" ry="27" fill="#e9d5ff"/>
+              <circle cx="70" cy="52" r="4" fill="#1e293b"/>
+              <circle cx="92" cy="52" r="4" fill="#1e293b"/>
+              <path d="M70 63 Q80 69 90 63" stroke="#1e293b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <ellipse cx="64" cy="40" rx="8" ry="5" fill="#ffffff" opacity="0.7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /left col -->
 
     <!-- RIGHT COLUMN -->
     <div>
 
-      <div class="fade-up">
+      <div class="fade-up reveal-right">
         <div class="section-header"><span class="section-icon">💼</span><h2 class="section-title">Experience</h2></div>
         <div class="card">
           <div class="card-title">Work History</div>
@@ -546,7 +730,7 @@ body {
         </div>
       </div>
 
-      <div class="fade-up">
+      <div class="fade-up reveal-right">
         <div class="section-header"><span class="section-icon">🚀</span><h2 class="section-title">Projects</h2></div>
         <div class="card">
           <div class="card-title">Featured Work</div>
@@ -606,36 +790,50 @@ body {
         </div>
       </div>
 
-      <div class="fade-up">
+      <div class="fade-up reveal-zoom">
         <div class="section-header"><span class="section-icon">🏆</span><h2 class="section-title">Achievements</h2></div>
         <div class="card">
           <div class="card-title">Highlights</div>
           <div class="achievement-item">
-            <div class="ach-icon" style="background:#fef9c3;">🎓</div>
+            <div class="ach-icon" style="background:#fef9c3;">🏛️</div>
             <div>
               <div class="ach-title">BCA Graduate — 2026</div>
               <div class="ach-desc">Completing Bachelor of Computer Application from Usha Martin University, Ranchi, Jharkhand with strong academic performance.</div>
             </div>
           </div>
           <div class="achievement-item">
-            <div class="ach-icon" style="background:#dbeafe;">⚡</div>
+            <div class="ach-icon" style="background:#dbeafe;">🖥️</div>
             <div>
               <div class="ach-title">Intro to Front-End Development</div>
               <div class="ach-desc">Successfully completed Meta's "Introduction to Front-End Development" course on Coursera, learning the fundamentals of HTML, CSS, JavaScript, responsive design, and modern front-end web development.</div>
             </div>
           </div>
            <div class="achievement-item">
-            <div class="ach-icon" style="background:#dbeafe;">⚡</div>
+            <div class="ach-icon" style="background:#fce7f3;">💼</div>
             <div>
               <div class="ach-title">Frontend Web Development Internship</div>
               <div class="ach-desc">Completed a three-month Frontend Web Development internship at Codtech IT Solutions, gaining practical skills, project experience, and teamwork abilities professionally.</div>
             </div>
           </div>
           <div class="achievement-item">
-            <div class="ach-icon" style="background:#dbeafe;">⚡</div>
+            <div class="ach-icon" style="background:#f3e8ff;">🤖</div>
             <div>
               <div class="ach-title">Essentials of Prompt Engineering</div>
               <div class="ach-desc">Completed a certification course on the essentials of prompt engineering, enhancing my ability to interact effectively with AI models.</div>
+            </div>
+          </div>
+          <div class="achievement-item">
+            <div class="ach-icon" style="background:#dcfce7;">🏭</div>
+            <div>
+              <div class="ach-title">One Day Industrial Visit — Codezeal Technology</div>
+              <div class="ach-desc">Awarded certificate for participation in the industrial visit completion at Codezeal Technology Pvt. Ltd. (from the house of BrightCode), Namkum Industrial Area, Ranchi, Jharkhand on 19th March, 2026.</div>
+            </div>
+          </div>
+          <div class="achievement-item">
+            <div class="ach-icon" style="background:#eff6ff;">🎯</div>
+            <div>
+              <div class="ach-title">Web Programming Foundations — LinkedIn Learning</div>
+              <div class="ach-desc">Successfully completed "Web Programming Foundations" on LinkedIn Learning (Aug 13, 2026), covering Programming Foundations and Front-End Development skills in 1 hour 57 minutes.</div>
             </div>
           </div>
         </div>
@@ -645,7 +843,7 @@ body {
   </div><!-- /two-col -->
 
   <!-- ── CERTIFICATES (full width — covers the same left-to-right area as the Hire Me banner) ── -->
-  <div class="fade-up" style="position:relative;z-index:2;max-width:1100px;margin:24px auto 0;">
+  <div class="fade-up reveal-up" style="position:relative;z-index:2;max-width:1100px;margin:24px auto 0;">
     <div class="section-header"><span class="section-icon">📜</span><h2 class="section-title">Certificates</h2></div>
     <div class="card">
       <div class="card-title">Credentials & Certifications</div>
@@ -709,6 +907,44 @@ body {
           </div>
         </div>
 
+        <div class="cert-card" onclick="openLightbox(3)">
+          <div style="overflow:hidden;border-radius:14px 14px 0 0;">
+            <img class="cert-thumb" src="./codezeal.jpeg" alt="One Day Industrial Visit Certificate"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="cert-thumb-placeholder" style="display:none;">
+              <span class="cert-placeholder-icon">📜</span>
+              <span class="cert-placeholder-text">codezeal.jpeg</span>
+            </div>
+          </div>
+          <div class="cert-overlay">
+            <div class="cert-overlay-icon">👁️</div>
+            <div class="cert-overlay-text">Click to view</div>
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">One Day Industrial Visit</div>
+            <div class="cert-issuer">Codezeal Technology Pvt. Ltd. • 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox(4)">
+          <div style="overflow:hidden;border-radius:14px 14px 0 0;">
+            <img class="cert-thumb" src="./linked_certificate.jpg" alt="Web Programming Foundations Certificate"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="cert-thumb-placeholder" style="display:none;">
+              <span class="cert-placeholder-icon">📜</span>
+              <span class="cert-placeholder-text">linked_certificate.jpg</span>
+            </div>
+          </div>
+          <div class="cert-overlay">
+            <div class="cert-overlay-icon">👁️</div>
+            <div class="cert-overlay-text">Click to view</div>
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Web Programming Foundations</div>
+            <div class="cert-issuer">LinkedIn Learning • 2026</div>
+          </div>
+        </div>
+
         <!-- ✏️ Aur certificates add karne ke liye yahan copy-paste karo -->
 
       </div>
@@ -769,11 +1005,61 @@ body {
 </div>
 
 <script>
+// ── WELCOME POPUP — TYPEWRITER ──
+(function() {
+  const text    = "Welcome to my Portfolio";
+  const typed   = document.getElementById('tw-typed');
+  const overlay = document.getElementById('welcome-overlay');
+  let i = 0;
+
+  function type() {
+    if (i < text.length) {
+      typed.textContent += text[i];
+      i++;
+      setTimeout(type, 85);
+    } else {
+      setTimeout(() => {
+        overlay.classList.add('hide');
+        setTimeout(() => {
+          overlay.style.display = 'none';
+          triggerHeroReveal();
+        }, 800);
+      }, 600);
+    }
+  }
+
+  setTimeout(type, 400);
+})();
+
+function triggerHeroReveal() {
+  document.querySelectorAll('.polaroid-wrapper, .hero-right').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), i * 220);
+  });
+}
+
+// ── CUSTOM CURSOR — handled via CSS ──
+
+// ── SCROLL REVEAL ──
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+    } else {
+      entry.target.classList.remove('in');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .reveal-zoom').forEach(el => {
+  revealObs.observe(el);
+});
+
 // ✏️ Apne certificates yahan add karo
 const certs = [
   { src: './intership.jpg', name: 'Internship Certificate', issuer: 'CodeTech IT Solutions • 2026' },
   { src: './asss.jpg',      name: 'AWS Certificate',        issuer: 'AWS Training & Certification • 2026' },
-  { src: './coursera.jpg',  name: 'Intro to Front-End Development', issuer: 'Meta • Coursera • 2026' }
+  { src: './coursera.jpg',  name: 'Intro to Front-End Development', issuer: 'Meta • Coursera • 2026' },
+  { src: './codezeal.jpeg', name: 'One Day Industrial Visit', issuer: 'Codezeal Technology Pvt. Ltd. • 2026' },
+  { src: './linked_certificate.jpg', name: 'Web Programming Foundations', issuer: 'LinkedIn Learning • 2026' }
 ];
 
 let currentCert = 0;
@@ -809,6 +1095,53 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight')  changeCert(+1);
   if (e.key === 'ArrowLeft')   changeCert(-1);
 });
+
+// ── UNIQUE CARD SCROLL ANIMATIONS ──
+(function() {
+  const styles = [
+    'anim-slide-left',
+    'anim-slide-right',
+    'anim-slide-up',
+    'anim-zoom-in',
+    'anim-flip-x',
+    'anim-skew',
+    'anim-drop',
+    'anim-spin-in'
+  ];
+
+  // Sirf bottom-section ke cards pe animation — top-section (landing page) pe nahi
+  const cards = document.querySelectorAll('.bottom-section .card');
+  cards.forEach((card, i) => {
+    card.classList.add(styles[i % styles.length]);
+  });
+
+  const cardObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('card-visible');
+      } else {
+        entry.target.classList.remove('card-visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  cards.forEach(card => cardObs.observe(card));
+
+  // Top-section hero elements bhi repeat scroll pe animate honge
+  const heroObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+      } else {
+        entry.target.classList.remove('in');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.polaroid-wrapper, .hero-right, .quick-stats .stat-item, .contact-chip').forEach(el => {
+    heroObs.observe(el);
+  });
+})();
 
 // Scroll fade-up
 const observer = new IntersectionObserver((entries) => {
